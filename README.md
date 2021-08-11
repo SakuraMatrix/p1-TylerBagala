@@ -1,26 +1,25 @@
-# p1-TylerBagala-GetBud
-A budget tracker to categorize purchases and compare income to expenses.
+# p1-TylerBagala
+Streets of Fortune: A server API to keep track of a simulated retail market.
 
 # Proposal
-GetBud is a budget tracking application designed to help users categorize their purchases and track how much of their income they are using. This in turn guides users into identifying where they spend the most of their monthly income as well as tracking where they could trim their budget and save money. The system offers a varied set of categories to classify user purchases as well as offer stats from the individual user's spending history, including percentages of income and generalistic projections on future saving/spending goals.
+SoF is an API that covers and tracks a retail market of various shops and their investors. Investors can invest money into their properties and increase their value and shop price, while getting data on properties such as their current total worth, shop prices, and shop owner. These properties also belong to districts, which have their own designation to observe what properties are in each district including the total worth and average shop value of the district. Additionally investors can get information on the other investors, such as total worth, current available cash, and what properties they control.
 
-# Users will be able to
-1)	Log into the system with a unique username
-2)	Provide information on their monthly income and major expenses as well as individual purchases throughout the month/year.
-3)	Set a maximum spending goal as well as goals for each major spending category.
-4)	Get statistics on where they spend their money each month
-5)	See projections on how much they could save with adjustments in their budget
+# Users can post queries to
+1)	Have an investor invest into their property, spending their available cash to invest into the property and raise its value and shop price.
+2)	Request a payday for an investor, giving them a sum of cash to work with.
+3)	Get an investor to buy out a property, taking over the ownership of the property.
+4)	Make an investor shop at a property, giving their cash to the owner of the shop.
+5)	Encourage an investor to buy or sell stocks in a district, updating their cash and stock count as well as potentially altering the stock price.
 
-#  Major spending categories
-1)	Housing
-2)	Utilities
-3)	Food
-4)	Personal Care
-5)	Transportation
-6)	Bulk Expenses (Medical bills, debt payments, etc.)
-8)	Entertainment (Movies, games, tv subscriptions...)
-9)	Large shopping (One time style purchases like furniture or online shopping like Amazon)
-10)	Miscellaneous (Anything not covered elsewhere)
+#  RESTful queries
+1) /properties gets a list of all properties in the market.
+2) /properties/{id} gets a more detailed view of a single property, such as current investment, prices, owner, and maximum value.
+3) /districts gets a list of current districts, as well as the current value of the stock in said district.
+4) /districts/{id} shows a detailed view of a district, such as the properties in the given district and the current stock investments and price of stock.
+5) /investors gets a general view of the current investors, such as their current cash and net worth.
+6) /investors/{id} shows a detailed view of the investor, such as their overall worth, owned properties, held stocks, and available capital.
+7) /stocks shows the general stock market, showing prices for each district as well as current holdings.
+
 
 # Technology Stack
 1) Java 8
