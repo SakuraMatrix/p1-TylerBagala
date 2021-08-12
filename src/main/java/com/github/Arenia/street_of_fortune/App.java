@@ -42,8 +42,14 @@ public class App {
                 .get("/investors", (request, response) ->
                     response.send(investorService.getAll().map(App::toByteBuf)
                     .log("http-server")))
+                .get("/investors/{param}", (request, response) ->
+                    response.send(investorService.get(request.param("param")).map(App::toByteBuf)
+                    .log("http-server")))
                 .get("/properties", (request, response) ->
                     response.send(propertyService.getAll().map(App::toByteBuf)
+                    .log("http-server")))
+                .get("/properties/{param}", (request, response) ->
+                    response.send(propertyService.get(request.param("param")).map(App::toByteBuf)
                     .log("http-server")))
                 )
         .bindNow()

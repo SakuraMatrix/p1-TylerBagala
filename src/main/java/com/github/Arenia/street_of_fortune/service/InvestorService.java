@@ -17,7 +17,7 @@ public class InvestorService{
         return investorRepository.getAll();
     }
 
-    public Mono<Investor> get(String name){
-        return investorRepository.get(name);
+    public Mono<Investor> get(String id){
+        return investorRepository.get(Integer.parseInt(id));
     }
 }

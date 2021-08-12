@@ -14,12 +14,12 @@ public class InvestorRepository {
     }
 
     public Flux<Investor> getAll() {
-        return Flux.from(session.executeReactive("SELECT name, capital, net_worth FROM market.investors"))
-                .map(row -> new Investor(row.getString("name"), row.getDouble("capital"), row.getDouble("net_worth")));
+        return Flux.from(session.executeReactive("SELECT * FROM market.investors"))
+                .map(row -> new Investor(row.getInt("id"), row.getString("name"), row.getDouble("capital"), row.getDouble("net_worth")));
     }
 
-    public Mono<Investor> get(String name) {
-        return Mono.from(session.executeReactive("SELECT name, capital, net_worth FROM market.investors WHERE name = " + name))
-                .map(row -> new Investor(row.getString("name"), row.getDouble("capital"), row.getDouble("net_worth")));
+    public Mono<Investor> get(int id) {
+        return Mono.from(session.executeReactive("SELECT * FROM market.investors WHERE id = " + id))
+                .map(row -> new Investor(row.getInt("id"), row.getString("name"), row.getDouble("capital"), row.getDouble("net_worth")));
     }
 }

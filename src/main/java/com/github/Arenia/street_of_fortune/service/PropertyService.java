@@ -17,7 +17,7 @@ public class PropertyService{
         return PropertyRepository.getAll();
     }
 
-    public Mono<Property> get(String name){
-        return PropertyRepository.get(name);
+    public Mono<Property> get(String id){
+        return PropertyRepository.get(Integer.parseInt(id));
     }
 }

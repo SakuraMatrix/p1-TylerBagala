@@ -21,7 +21,7 @@ public class PropertyRepository {
     }
 
     public Mono<Property> get(int id) {
-        return Mono.from(session.executeReactive("SELECT name, capital, net_worth FROM market.properties WHERE id = " + id))
+        return Mono.from(session.executeReactive("SELECT * FROM market.properties WHERE id = " + id))
                 .map(row -> new Property(row.getInt("id"), row.getString("name"), row.getDouble("value"),
                 row.getDouble("max_investment"), row.getDouble("shop_price"), row.getString("owner"),
                  row.getString("district_name"), row.getDouble("stock_value")));
