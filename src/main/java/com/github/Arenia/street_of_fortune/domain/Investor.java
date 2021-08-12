@@ -1,6 +1,5 @@
 package com.github.Arenia.street_of_fortune.domain;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class Investor {
