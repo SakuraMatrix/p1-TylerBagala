@@ -3,9 +3,12 @@ package com.github.arenia.street_of_fortune.service;
 import com.github.arenia.street_of_fortune.domain.Property;
 import com.github.arenia.street_of_fortune.repository.PropertyRepository;
 
+import org.springframework.stereotype.Service;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public class PropertyService{
     private PropertyRepository PropertyRepository;
 

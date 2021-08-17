@@ -3,10 +3,12 @@ package com.github.arenia.street_of_fortune.repository;
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.github.arenia.street_of_fortune.domain.Property;
 
+import org.springframework.stereotype.Repository;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
+@Repository
 public class PropertyRepository {
     private CqlSession session;
 

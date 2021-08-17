@@ -4,17 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import com.datastax.oss.driver.api.core.CqlSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.arenia.street_of_fortune.repository.InvestorRepository;
-import com.github.arenia.street_of_fortune.repository.PropertyRepository;
-import com.github.arenia.street_of_fortune.service.InvestorService;
-import com.github.arenia.street_of_fortune.service.PropertyService;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import reactor.core.publisher.Mono;
-import reactor.netty.http.server.HttpServer;
+import reactor.netty.DisposableServer;
 
 public class App {
     public static void main(String[] args) throws URISyntaxException {
@@ -23,38 +19,15 @@ public class App {
 
     private static void runNetty() throws URISyntaxException { 
         
-        CqlSession session = CqlSession.builder().build();
-        InvestorRepository investorRepository = new InvestorRepository(session);
-        InvestorService investorService = new InvestorService(investorRepository);
-        PropertyRepository propertyRepository = new PropertyRepository(session);
-        PropertyService propertyService = new PropertyService(propertyRepository);
+        AnnotationConfigApplicationContext applicationContext =
+            new AnnotationConfigApplicationContext(AppConfig.class);
 
 
-        HttpServer.create()
-        .port(8080)
-        .route(routes ->
-            routes.get("/", (request, response) ->
-                    response.sendString(Mono.just("Hello World!")
-                            .log("http-server")))
-                .post("/echo", (request, response) ->
-                    response.send(request.receive().retain()
-                            .log("http-server")))
-                .get("/investors", (request, response) ->
-                    response.send(investorService.getAll().map(App::toByteBuf)
-                    .log("http-server")))
-                .get("/investors/{param}", (request, response) ->
-                    response.send(investorService.get(request.param("param")).map(App::toByteBuf)
-                    .log("http-server")))
-                .get("/properties", (request, response) ->
-                    response.send(propertyService.getAll().map(App::toByteBuf)
-                    .log("http-server")))
-                .get("/properties/{param}", (request, response) ->
-                    response.send(propertyService.get(request.param("param")).map(App::toByteBuf)
-                    .log("http-server")))
-                )
-        .bindNow()
+        applicationContext.getBean(DisposableServer.class)
         .onDispose()
         .block();
+
+        applicationContext.close();
     }
 
     static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
