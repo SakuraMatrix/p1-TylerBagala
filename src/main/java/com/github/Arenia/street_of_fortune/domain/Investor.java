@@ -1,4 +1,4 @@
-package com.github.Arenia.street_of_fortune.domain;
+package com.github.arenia.street_of_fortune.domain;
 
 import java.util.Objects;
 

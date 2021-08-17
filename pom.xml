@@ -1,6 +1,6 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.Arenia</groupId>
+    <groupId>com.github.arenia</groupId>
     <artifactId>street-of-fortune</artifactId>
     <version>1.0.0</version>
 
@@ -58,7 +58,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>com.github.Arenia.street_of_fortune.App</mainClass>
+                    <mainClass>com.github.arenia.street_of_fortune.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>

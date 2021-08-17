@@ -1,7 +1,7 @@
-package com.github.Arenia.street_of_fortune.service;
+package com.github.arenia.street_of_fortune.service;
 
-import com.github.Arenia.street_of_fortune.domain.Property;
-import com.github.Arenia.street_of_fortune.repository.PropertyRepository;
+import com.github.arenia.street_of_fortune.domain.Property;
+import com.github.arenia.street_of_fortune.repository.PropertyRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

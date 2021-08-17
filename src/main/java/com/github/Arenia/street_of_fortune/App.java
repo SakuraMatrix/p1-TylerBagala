@@ -1,4 +1,4 @@
-package com.github.Arenia.street_of_fortune;
+package com.github.arenia.street_of_fortune;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -6,10 +6,10 @@ import java.net.URISyntaxException;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Arenia.street_of_fortune.repository.InvestorRepository;
-import com.github.Arenia.street_of_fortune.repository.PropertyRepository;
-import com.github.Arenia.street_of_fortune.service.InvestorService;
-import com.github.Arenia.street_of_fortune.service.PropertyService;
+import com.github.arenia.street_of_fortune.repository.InvestorRepository;
+import com.github.arenia.street_of_fortune.repository.PropertyRepository;
+import com.github.arenia.street_of_fortune.service.InvestorService;
+import com.github.arenia.street_of_fortune.service.PropertyService;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;

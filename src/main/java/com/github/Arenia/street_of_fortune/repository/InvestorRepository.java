@@ -1,7 +1,8 @@
-package com.github.Arenia.street_of_fortune.repository;
+package com.github.arenia.street_of_fortune.repository;
 
 import com.datastax.oss.driver.api.core.CqlSession;
-import com.github.Arenia.street_of_fortune.domain.Investor;
+import com.github.arenia.street_of_fortune.domain.Investor;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
