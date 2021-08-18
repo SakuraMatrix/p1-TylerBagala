@@ -1,5 +1,7 @@
 package com.github.arenia.street_of_fortune;
 
+import ch.qos.logback.classic.Logger;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.arenia.street_of_fortune.domain.Investor;
 import com.github.arenia.street_of_fortune.domain.Land;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import io.netty.buffer.ByteBuf;
@@ -17,16 +20,18 @@ import io.netty.buffer.Unpooled;
 import reactor.netty.DisposableServer;
 
 public class App {
+    private static final Logger log = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("app");
     public static void main(String[] args) throws URISyntaxException {
+        log.info("Starting up.");
         runNetty();
     }
 
     private static void runNetty() throws URISyntaxException { 
-        
+        log.info("Bean creation...");
         AnnotationConfigApplicationContext applicationContext =
             new AnnotationConfigApplicationContext(AppConfig.class);
 
-
+        log.info("Server windup...");
         applicationContext.getBean(DisposableServer.class)
         .onDispose()
         .block();
