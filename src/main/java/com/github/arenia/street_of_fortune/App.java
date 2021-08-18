@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.arenia.street_of_fortune.domain.Investor;
+import com.github.arenia.street_of_fortune.domain.Land;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -30,9 +32,9 @@ public class App {
         applicationContext.close();
     }
 
-    static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    static ByteBuf toByteBuf(Object o){
+    public static ByteBuf toByteBuf(Object o){
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             OBJECT_MAPPER.writeValue(out, o);
@@ -40,5 +42,27 @@ public class App {
             ex.printStackTrace();
         }
         return ByteBufAllocator.DEFAULT.buffer().writeBytes(out.toByteArray());
+    }
+
+    public static Investor parseInvestor(String str){
+        Investor investor = null;
+        try{
+            investor = OBJECT_MAPPER.readValue(str, Investor.class);
+        } 
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+        return investor;
+    }
+
+    public static Land parseLand(String str){
+        Land land = null;
+        try{
+            land = OBJECT_MAPPER.readValue(str, Land.class);
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
+        return land;
     }
 }

@@ -23,4 +23,8 @@ public class InvestorService{
     public Mono<Investor> get(String id){
         return investorRepository.get(Integer.parseInt(id));
     }
+
+    public Investor newInvestor(Investor investor){
+        return investorRepository.create(investor);
+    }
 }
