@@ -19,7 +19,7 @@ public class InvestorRepository {
 
     public Investor create(Investor investor){
         SimpleStatement statement = SimpleStatement.builder(
-            "INSERT INTO market.investors (id, name, net_worth) values (?,?,?,?)")
+            "INSERT INTO market.investors (id, name, net_worth) values (?,?,?)")
             .addPositionalValues(
                 investor.getId(),
                 investor.getName(),

@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Investor {
     int id;
     String name;
-    double net_worth;
+    double netWorth;
 
     public Investor(){}
 
-    public Investor(int id, String name, double net_worth){
+    public Investor(int id, String name, double netWorth){
         this.id = id;
         this.name = name;
-        this.net_worth = net_worth;
+        this.netWorth = netWorth;
     }
 
     @Override
@@ -21,13 +21,13 @@ public class Investor {
         if (o == null || getClass() != o.getClass()) return false;
         Investor investor = (Investor) o;
         return id == investor.id
-        && Double.compare(investor.net_worth, net_worth) == 0 
+        && Double.compare(investor.netWorth, netWorth) == 0 
         && Objects.equals(name, investor.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, net_worth);
+        return Objects.hash(name, netWorth);
     }
 
     public int getId(){
@@ -39,6 +39,6 @@ public class Investor {
     }
 
     public double getNetWorth(){
-        return net_worth;
+        return netWorth;
     }
 }

@@ -3,8 +3,7 @@ CREATE KEYSPACE IF NOT EXISTS market WITH REPLICATION = {'class' : 'SimpleStrate
 CREATE TABLE IF NOT EXISTS market.investors (
     id int PRIMARY KEY,
     name text,
-    net_worth double,
-    stocks map<text, int>
+    net_worth double
 );
 
 CREATE TABLE IF NOT EXISTS market.lands (

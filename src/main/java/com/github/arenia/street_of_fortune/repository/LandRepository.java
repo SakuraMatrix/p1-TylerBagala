@@ -18,13 +18,13 @@ public class LandRepository {
     }
 
     public Flux<Land> getAll() {
-        return Flux.from(session.executeReactive("SELECT * FROM market.properties"))
+        return Flux.from(session.executeReactive("SELECT * FROM market.lands"))
                 .map(row -> new Land(row.getInt("id"), row.getString("name"),
                  row.getDouble("value"), row.getDouble("shop_price")));
     }
 
     public Mono<Land> get(int id) {
-        return Mono.from(session.executeReactive("SELECT * FROM market.properties WHERE id = " + id))
+        return Mono.from(session.executeReactive("SELECT * FROM market.lands WHERE id = " + id))
             .map(row -> new Land(row.getInt("id"), row.getString("name"),
             row.getDouble("value"), row.getDouble("shop_price")));
     }
