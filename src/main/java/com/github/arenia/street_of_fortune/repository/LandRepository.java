@@ -31,10 +31,11 @@ public class LandRepository {
 
     public Land create(Land land) {
         SimpleStatement statement = SimpleStatement.builder(
-            "INSERT INTO market.lands (id, name, shop_price, max_investment, owner, district_name, stock_value) values (?,?,?,?,?,?,?)")
+            "INSERT INTO market.lands (id, name, value, shop_price) values (?,?,?,?)")
             .addPositionalValues(
                 land.getId(),
                 land.getName(),
+                land.getValue(),
                 land.getShopPrice())
             .build();
         Flux.from(session.executeReactive(statement)).subscribe();
