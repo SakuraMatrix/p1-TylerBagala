@@ -1,5 +1,7 @@
 package com.github.arenia.street_of_fortune.service;
 
+import java.util.Map;
+
 import com.github.arenia.street_of_fortune.domain.Land;
 import com.github.arenia.street_of_fortune.repository.LandRepository;
 
@@ -26,5 +28,13 @@ public class LandService{
 
     public Land newLand(Land land){
         return landRepository.create(land);
+    }
+
+    public Mono<Integer> deleteLand(String id){
+        return landRepository.deleteLand(Integer.parseInt(id));
+    }
+
+    public Double updateShopPrice(Map<String, String> params){
+        return landRepository.updateShopPrice(Integer.parseInt(params.get("id")), Double.parseDouble(params.get("newprice")));
     }
 }

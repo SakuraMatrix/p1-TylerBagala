@@ -45,9 +45,20 @@ public class AppConfig {
                         .map(investorService::newInvestor)
                         .map(App::toByteBuf)
                         .log("http-server")))
-                .get("/investors/{param}", (request, response) ->
-                    response.send(investorService.get(request.param("param")).map(App::toByteBuf)
+                .get("/investors/{id}", (request, response) ->
+                    response.send(investorService.get(request.param("id")).map(App::toByteBuf)
                         .log("http-server")))
+                .get("/investors/delete/{id}", (request, response) ->
+                    response.send(
+                        investorService.deleteInvestor(request.param("id"))
+                        .map(App::toByteBuf)
+                        .log("http-server")
+                    ))
+                .get("/investors/{id}/{newWorth}", (request, response) ->
+                    response.send(
+                        Mono.just(investorService.updateWorth(request.params()))
+                        .map(App::toByteBuf)
+                    ))
                 .get("/lands", (request, response) ->
                     response.send(landService.getAll().map(App::toByteBuf)
                         .log("http-server")))
@@ -58,10 +69,22 @@ public class AppConfig {
                         .map(landService::newLand)
                         .map(App::toByteBuf)
                         .log("http-server")))
-                .get("/lands/{param}", (request, response) ->
-                    response.send(landService.get(request.param("param")).map(App::toByteBuf)
+                .get("/lands/delete/{id}", (request, response) ->
+                        response.send(
+                            landService.deleteLand(request.param("id"))
+                            .map(App::toByteBuf)
+                            .log("http-server")
+                        ))
+                .get("/lands/{id}", (request, response) ->
+                    response.send(landService.get(request.param("id")).map(App::toByteBuf)
                         .log("http-server")))
+                .get("/lands/{id}/{newprice}", (request, response) ->
+                    response.send(
+                        Mono.just(landService.updateShopPrice(request.params()))
+                        .map(App::toByteBuf)
+                    )
                 )
+            )
         .bindNow();
     }
 }

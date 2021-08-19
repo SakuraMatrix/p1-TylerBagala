@@ -1,5 +1,7 @@
 package com.github.arenia.street_of_fortune.service;
 
+import java.util.Map;
+
 import com.github.arenia.street_of_fortune.domain.Investor;
 import com.github.arenia.street_of_fortune.repository.InvestorRepository;
 
@@ -26,5 +28,13 @@ public class InvestorService{
 
     public Investor newInvestor(Investor investor){
         return investorRepository.create(investor);
+    }
+
+    public Mono<Integer> deleteInvestor(String id){
+        return investorRepository.deleteInvestor(Integer.parseInt(id));
+    }
+
+    public Double updateWorth(Map<String, String> params) {
+        return investorRepository.updateWorth(Integer.parseInt(params.get("id")), Double.parseDouble(params.get("newWorth")));
     }
 }

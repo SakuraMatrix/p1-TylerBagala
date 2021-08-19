@@ -2,6 +2,8 @@ package com.github.arenia.street_of_fortune.repository;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.SimpleStatement;
+import com.datastax.oss.driver.api.querybuilder.QueryBuilder;
+import com.datastax.oss.driver.api.querybuilder.update.Update;
 import com.github.arenia.street_of_fortune.domain.Land;
 
 import org.slf4j.LoggerFactory;
@@ -47,5 +49,31 @@ public class LandRepository {
             .build();
         Flux.from(session.executeReactive(statement)).subscribe();
         return land;
+    }
+
+    public Mono<Integer> deleteLand(int id){
+        log.info("Attempting delete of land.");
+        Flux.from(session.executeReactive(
+            SimpleStatement.builder(
+            "DELETE FROM market.lands WHERE id = ?")
+            .addPositionalValue(id)
+            .build()))
+            .subscribe();
+        return Mono.just(id);
+    }
+
+    public Double updateShopPrice(int id, Double shopPrice){
+        log.info("Updating shop price.");
+
+        Update update = QueryBuilder.update("market", "lands")
+            .setColumn("shop_price", QueryBuilder.bindMarker())
+            .whereColumn("id")
+            .isEqualTo(QueryBuilder.bindMarker());
+
+        Mono.from(
+            session.executeReactive(
+                session.prepare(update.build()).bind().setDouble(0, shopPrice).setInt(1, id)))
+        .subscribe();
+        return shopPrice;
     }
 }
